@@ -1,0 +1,52 @@
+Script Name	Description
+fetchInvoices.js	Fetches invoices data from Jobber API
+fetchClients.js	Fetches clients and their properties
+fetchQuotes.js	Fetches quote data
+fetchJobs.js	Retrieves job-related data
+fetchSchedules.js	Fetches scheduling data
+fetchRequests.js	Retrieves service request details
+tokenManagement.js	Handles token refresh and storage
+
+📌 Automation Setup
+Use automation/scheduleTriggers.js to schedule API requests.
+Look at docs/Automation.md for more details.
+
+📌 License
+This project is licensed under the MIT License.
+
+
+---
+
+### **📌 Sample Scripts**
+#### **`scripts/fetchInvoices.js`**
+```javascript
+const fetch = require("node-fetch");
+const { getStoredAccessToken } = require("./tokenManagement");
+
+async function fetchInvoices() {
+    const url = "https://api.getjobber.com/api/graphql";
+    const accessToken = getStoredAccessToken();
+
+    if (!accessToken) {
+        console.log("No access token found. Refresh the token.");
+        return;
+    }
+
+    const query = {
+        query: `query FetchInvoices { invoices(first: 10) { nodes { id, invoiceNumber, total } } }`
+    };
+
+    const response = await fetch(url, {
+        method: "POST",
+        headers: {
+            "Authorization": `Bearer ${accessToken}`,
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(query)
+    });
+
+    const data = await response.json();
+    console.log("Fetched Invoices:", data);
+}
+
+fetchInvoices();
