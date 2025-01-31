@@ -1,0 +1,32 @@
+Jobber-Looker-Integration/
+│── 📂 docs/                           # Documentation
+│   ├── Setup_Instructions.md          # Step-by-step guide
+│   ├── API_Authorization.md           # OAuth 2.0 authorization process
+│   ├── Data_Fetching.md               # How data fetching scripts work
+│   ├── Automation.md                  # Automating token refresh and triggers
+│   ├── Looker_Studio_Integration.md    # Connecting data to Looker Studio
+│
+│── 📂 scripts/                         # API scripts for data extraction
+│   ├── fetchInvoices.js                # Fetch invoices data
+│   ├── fetchClients.js                 # Fetch clients data
+│   ├── fetchQuotes.js                  # Fetch quotes data
+│   ├── fetchJobs.js                    # Fetch jobs data
+│   ├── fetchSchedules.js               # Fetch schedules data
+│   ├── fetchRequests.js                # Fetch requests data
+│   ├── tokenManagement.js              # Handle access token refresh
+│
+│── 📂 automation/                      # Automation setup
+│   ├── scheduleTriggers.js             # Script to set up execution schedules
+│   ├── cron_jobs.md                    # Guide to setting up cron jobs
+│
+│── 📂 looker_studio/                   # Looker Studio configurations
+│   ├── data_preparation.md             # Preparing Google Sheets for Looker
+│   ├── visualization_guide.md          # How to build reports in Looker Studio
+│
+│── 📂 config/                          # Configuration files
+│   ├── credentials.json                # Store API credentials (DO NOT SHARE PUBLICLY)
+│   ├── config.js                        # Configuration settings
+│
+│── .gitignore                          # Ignore sensitive files (e.g., credentials)
+│── README.md                           # Main project overview
+│── LICENSE                             # Open-source license (if applicable)
