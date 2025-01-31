@@ -50,3 +50,47 @@ async function fetchInvoices() {
 }
 
 fetchInvoices();
+
+
+
+============================================================================================
+
+
+
+
+scripts/tokenManagement.js
+const fs = require("fs");
+const fetch = require("node-fetch");
+const credentials = require("../config/credentials.json");
+
+async function refreshAccessToken() {
+    const url = "https://api.getjobber.com/api/oauth/token";
+
+    const payload = new URLSearchParams({
+        client_id: credentials.client_id,
+        client_secret: credentials.client_secret,
+        grant_type: "refresh_token",
+        refresh_token: credentials.refresh_token
+    });
+
+    const response = await fetch(url, {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: payload
+    });
+
+    const data = await response.json();
+
+    if (data.access_token) {
+        credentials.access_token = data.access_token;
+        credentials.refresh_token = data.refresh_token;
+        fs.writeFileSync("../config/credentials.json", JSON.stringify(credentials, null, 2));
+        console.log("Token refreshed successfully.");
+    } else {
+        console.error("Error refreshing token:", data);
+    }
+}
+
+module.exports = { refreshAccessToken, getStoredAccessToken: () => credentials.access_token };
+
+
