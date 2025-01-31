@@ -1,0 +1,40 @@
+# Jobber API to Looker Studio Integration
+
+## Overview
+This project integrates **Jobber API** with **Looker Studio** to enable **automated data visualization**. It fetches data via API, processes it in Google Sheets, and connects it to Looker Studio.
+
+## Features
+✅ OAuth 2.0 authentication  
+✅ Automated token refresh  
+✅ Google Apps Script for API calls  
+✅ Google Sheets as a data store  
+✅ Looker Studio dashboard integration  
+
+---
+
+## 📌 Setup Instructions
+### 1️⃣ Clone the repository
+```bash
+git clone https://github.com/yourusername/Jobber-Looker-Integration.git
+cd Jobber-Looker-Integration
+
+
+
+2️⃣ Install Dependencies
+npm install
+
+3️⃣ Set Up API Authorization
+Follow docs/API_Authorization.md for setting up OAuth 2.0 with Jobber API.
+Add client_id and client_secret in config/credentials.json.
+
+4️⃣ Run API Scripts
+node scripts/fetchInvoices.js
+node scripts/fetchClients.js
+node scripts/fetchQuotes.js
+
+5️⃣ Automate with Cron Jobs (Optional)
+Set up automation using the guide in automation/cron_jobs.md.
+
+6️⃣ Connect to Looker Studio
+Follow docs/Looker_Studio_Integration.md to set up data visualization.
+
